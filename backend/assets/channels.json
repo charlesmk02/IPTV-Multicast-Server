@@ -2,211 +2,253 @@
   "France 2": {
     "frequency": 586166000,
     "ip": "",
-    "sid": 257
+    "sid": 257,
+    "checked": true
   },
   "France 4": {
     "frequency": 586166000,
     "ip": "",
-    "sid": 260
+    "sid": 260,
+    "checked": true
   },
   "franceinfo ": {
     "frequency": 586166000,
     "ip": "",
-    "sid": 262
+    "sid": 262,
+    "checked": true
   },
   "F3 Paris Ile-de-France": {
     "frequency": 586166000,
     "ip": "",
-    "sid": 273
+    "sid": 273,
+    "checked": true
   },
   "BFM Paris": {
     "frequency": 586166000,
     "ip": "",
-    "sid": 368
+    "sid": 368,
+    "checked": true
   },
   "C8": {
     "frequency": 506166000,
     "ip": "",
-    "sid": 513
+    "sid": 513,
+    "checked": true
   },
   "BFM TV": {
     "frequency": 506166000,
     "ip": "",
-    "sid": 515
+    "sid": 515,
+    "checked": true
   },
   "CNEWS": {
     "frequency": 506166000,
     "ip": "",
-    "sid": 516
+    "sid": 516,
+    "checked": true
   },
   "CSTAR": {
     "frequency": 506166000,
     "ip": "",
-    "sid": 517
+    "sid": 517,
+    "checked": true
   },
   "Gulli": {
     "frequency": 506166000,
     "ip": "",
-    "sid": 518
+    "sid": 518,
+    "checked": true
   },
   "CANAL+": {
     "frequency": 482166000,
     "ip": "",
-    "sid": 778
+    "sid": 778,
+    "checked": true
   },
   "CANAL+ CINEMA": {
     "frequency": 482166000,
     "ip": "",
-    "sid": 770
+    "sid": 770,
+    "checked": true
   },
   "CANAL+ SPORT": {
     "frequency": 482166000,
     "ip": "",
-    "sid": 771
+    "sid": 771,
+    "checked": true
   },
   "PLANETE+": {
     "frequency": 482166000,
     "ip": "",
-    "sid": 772
+    "sid": 772,
+    "checked": true
   },
   "LCI": {
     "frequency": 482166000,
     "ip": "",
-    "sid": 776
+    "sid": 776,
+    "checked": true
   },
   "PARIS PREMIERE": {
     "frequency": 482166000,
     "ip": "",
-    "sid": 777
+    "sid": 777,
+    "checked": true
   },
   "[03f2]": {
     "frequency": 482166000,
     "ip": "",
-    "sid": 1010
+    "sid": 1010,
+    "checked": true
   },
   "[03f3]": {
     "frequency": 482166000,
     "ip": "",
-    "sid": 1011
+    "sid": 1011,
+    "checked": true
   },
   "[03f4]": {
     "frequency": 482166000,
     "ip": "",
-    "sid": 1012
+    "sid": 1012,
+    "checked": true
   },
   "DATASYSTEM R7": {
     "frequency": 482166000,
     "ip": "",
-    "sid": 1013
+    "sid": 1013,
+    "checked": true
   },
   "[03f6]": {
     "frequency": 482166000,
     "ip": "",
-    "sid": 1014
+    "sid": 1014,
+    "checked": true
   },
   "M6": {
     "frequency": 546166000,
     "ip": "",
-    "sid": 1025
+    "sid": 1025,
+    "checked": true
   },
   "W9": {
     "frequency": 546166000,
     "ip": "",
-    "sid": 1026
+    "sid": 1026,
+    "checked": true
   },
   "Arte": {
     "frequency": 546166000,
     "ip": "",
-    "sid": 1031
+    "sid": 1031,
+    "checked": true
   },
   "France 5": {
     "frequency": 546166000,
     "ip": "",
-    "sid": 1045
+    "sid": 1045,
+    "checked": true
   },
   "6ter": {
     "frequency": 546166000,
     "ip": "",
-    "sid": 1046
+    "sid": 1046,
+    "checked": true
   },
   "Arte.Tv": {
     "frequency": 546166000,
     "ip": "",
-    "sid": 1047
+    "sid": 1047,
+    "checked": true
   },
   "TF1": {
     "frequency": 562166000,
     "ip": "",
-    "sid": 1537
+    "sid": 1537,
+    "checked": true
   },
   "NRJ12": {
     "frequency": 562166000,
     "ip": "",
-    "sid": 1538
+    "sid": 1538,
+    "checked": true
   },
   "TMC": {
     "frequency": 562166000,
     "ip": "",
-    "sid": 1542
+    "sid": 1542,
+    "checked": true
   },
   "TFX": {
     "frequency": 562166000,
     "ip": "",
-    "sid": 1544
+    "sid": 1544,
+    "checked": true
   },
   "LCP": {
     "frequency": 562166000,
     "ip": "",
-    "sid": 1545
+    "sid": 1545,
+    "checked": true
   },
   "TF1 Séries Films": {
     "frequency": 642166000,
     "ip": "",
-    "sid": 2561
+    "sid": 2561,
+    "checked": true
   },
   "L'Equipe": {
     "frequency": 642166000,
     "ip": "",
-    "sid": 2562
+    "sid": 2562,
+    "checked": true
   },
   "Chérie 25": {
     "frequency": 642166000,
     "ip": "",
-    "sid": 2563
+    "sid": 2563,
+    "checked": true
   },
   "RMC Découverte": {
     "frequency": 642166000,
     "ip": "",
-    "sid": 2564
+    "sid": 2564,
+    "checked": true
   },
   "RMC STORY": {
     "frequency": 642166000,
     "ip": "",
-    "sid": 2565
+    "sid": 2565,
+    "checked": true
   },
   "Canal 31": {
     "frequency": 530166000,
     "ip": "",
-    "sid": 2050
+    "sid": 2050,
+    "checked": true
   },
   "IDF1": {
     "frequency": 530166000,
     "ip": "",
-    "sid": 2051
+    "sid": 2051,
+    "checked": true
   },
   "France 24": {
     "frequency": 530166000,
     "ip": "",
-    "sid": 2052
+    "sid": 2052,
+    "checked": true
   },
   "Museum Paris": {
     "frequency": 530166000,
     "ip": "",
-    "sid": 2053
+    "sid": 2053,
+    "checked": true
   },
   "": {
     "frequency": null,
     "ip": "",
-    "sid": null
+    "sid": null,
+    "checked": true
   }
 }

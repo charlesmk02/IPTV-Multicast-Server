@@ -46,7 +46,8 @@ exports.convertIntoJSON = function (res) {
             channels[name] = {
                 frequency: parseInt(array[i].frequency),
                 ip: '',
-                sid: parseInt(array[i].sid)
+                sid: parseInt(array[i].sid),
+                checked: true
             };
         }
 
