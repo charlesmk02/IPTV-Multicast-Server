@@ -5,7 +5,7 @@ exports.getUserChannels = function (req, res, obj) {
         var data = obj
         var userChannels = {}
         for (channel in data) {
-            if (data[channel].frequency == req.query.freq) {
+            if (data[channel].frequency == req.body.freq) {
                 userChannels[`${channel}`] = data[channel]
             }
         }

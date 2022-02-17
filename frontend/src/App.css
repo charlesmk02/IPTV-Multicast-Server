@@ -1,5 +1,20 @@
+html {
+  background-color: #edeae5;
+  padding-bottom: 10%;
+}
+
+a {
+  text-decoration: none!important;
+}
+
 .App {
   text-align: center;
+  height: 100vh;
+  background-color: #edeae5;
+}
+
+.login-container {
+  background-image: linear-gradient(to bottom, #2d6081, #167997, #0093a6, #04adad, #42c6ad);
 }
 
 .App-logo {
@@ -28,6 +43,293 @@
   color: #61dafb;
 }
 
+.login {
+  display: flex;
+  height: 90%;
+  justify-content: center;
+}
+.login-wrapper {
+  width: 30%;
+  padding: 30px;
+  margin: auto auto;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between!important;
+  padding-left: 4%!important;
+  padding-right: 4%!important;
+}
+
+.nav-sticky {
+  position: fixed!important;
+  top: 0;
+  z-index: 2;
+  width: 100%;
+}
+
+.nav > #links {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.nav > #search {
+  width: 50%;
+}
+
+.add-contact-buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.searchResult, .dash {
+  width: 84%;
+  margin: auto;
+  margin-top: 50px;
+  text-align: left;
+  border: none!important;
+}
+
+table#entreprise, table#suivis {
+  background-color: white;
+}
+
+.searchTitle, .dashTitle {
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.searchTitle.card-header {
+  background: rgba(45, 96, 129, .9)!important;
+}
+
+tr.result:nth-child(odd) {
+  background: rgba(45, 96, 129, .1)!important;
+}
+
+tr.result:hover {
+  background-color: rgba(45,96,129, 0.2)!important;
+}
+
+td.tableLink {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+td.tableLink:hover {
+  color: #2d6081;
+}
+
+.resultTitle {
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-align: left;
+  color: #4d4b4b;
+}
+
+.dot {
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.prod {
+  height: 20px;
+  width: 20px;
+}
+
+.dot#red {
+  background-color: red;
+}
+
+.dot#green {
+  background-color: green;
+}
+
+.button {
+  background-color: #2d6081!important;
+  border: none!important;
+}
+
+.start-button {
+  color: white;
+  background-color: green!important;
+  border: none!important;
+}
+
+.stop-button {
+  color: white;
+  background-color: red!important;
+  border: none!important;
+}
+
+.notif-button {
+  background-color: rgb(178, 34, 34)!important;
+  border: none!important;
+}
+
+.notif {
+  width: 100%;
+  width: 84%;
+  margin: auto;
+  margin-top: 50px;
+  text-align: center;
+  border: none!important;
+}
+
+.container {
+  width: 100%;
+  margin: 60px auto 60px auto!important;
+  text-align: left;
+}
+
+.header-suivi {
+  margin-left: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.p-item {
+  margin: 0;
+}
+
+.header-title {
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.content-suivi {
+  margin-left: 30px;
+}
+
+.footer-suivi {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 40px;
+}
+
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.accordion-header.card-header {
+  background-color: white;
+}
+
+.dialog-modal {
+  padding: 5%;
+}
+
+.form-rows {
+  margin-top: 20px;
+  margin-bottom: 20px; 
+}
+
+.form-label {
+  font-weight: bold;
+}
+
+.Modal-module_dialog__2UBIn {
+  width: 60%!important;
+  max-width: none!important;
+}
+
+.error {
+  color: red;
+  background-color: pink;
+  padding: 20px;
+  z-index: 2;
+  margin-bottom: 20px;
+}
+
+.card-header-tabs {
+  border-bottom: 1px solid #dee2e6!important;
+}
+
+.nav-link:hover {
+  border-color: none;
+  color: black;
+}
+
+.menu-item {
+  margin: 0 10px;
+}
+
+.dd-tabs {
+  padding: 1rem 1rem!important;
+  font-size: 18px;
+  color: black;
+}
+
+.dd-tabs.active {
+  font-weight: bold;
+  border-top: 2px solid black!important;
+  border-left: 2px solid black!important;
+  border-right: 2px solid black!important;
+}
+
+.contacts-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.contacts {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.contact-card {
+  cursor: pointer;
+  margin: 10px;
+}
+.link-contact {
+  color: #2d6081;
+  font-weight: bold;
+}
+
+.site-list {
+  display: flex;
+  justify-content: space-between;
+}
+
+.site-item {
+  text-align: center;
+}
+
+a.page-link {
+  color: #2d6081!important;
+}
+
+span.page-link {
+  background-color: #2d6081!important;
+  border: 1px solid #2d6081!important;
+}
+
+.confirmation-delete {
+  width: 30%!important;
+  padding: 20px;
+}
+
+th.ascending::after {
+  content: '▲';
+  display: inline-block;
+  margin-left: 0.3em;
+}
+
+th.descending::after {
+  content: '▼';
+  display: inline-block;
+  margin-left: 0.3em;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -35,4 +337,25 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.steps {
+  list-style: none;
+  padding-left: 0;
+}
+
+.steps li {
+  display: flex;
+  align-items: center;
+  border: solid 2px #d0d0d0;
+  border-radius: .2em;
+  padding: .5em .8em .5em .5em;
+  margin-bottom: 1em;
+  background-color: white;
+}
+
+.steps p {
+  max-width: none;
+  font-weight: bold;
+  margin: 0;
 }

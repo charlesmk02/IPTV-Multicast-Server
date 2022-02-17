@@ -3,7 +3,8 @@ const { error } = require('./Respond')
 
 exports.setMulticastAddress = function (req, res) {
     try {
-        var userChannels = JSON.parse(req.body.chl)
+        var userChannels = req.body.chl
+        console.log(userChannels)
         var string = ''
 
         for (key in userChannels) {
