@@ -21,11 +21,12 @@ const Scan = (props) => {
                             "chl": data["result"]
                         }))
                         .then(() => resolve())
-                        .catch(err => {throw new Error(err.message)})
+                        .catch(err => { throw err })
                 }
             }
             catch (err) {
                 alert(err.message)
+                console.log(err.message)
                 reject(err)
             }
         });

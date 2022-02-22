@@ -4,10 +4,3 @@ exports.success = function (result) {
         result: result
     }
 }
-
-exports.error = function (message) {
-    return {
-        status: 'error',
-        message: message
-    }
-}

@@ -1,7 +1,7 @@
 var express = require('express')
 var router = express.Router();
 const { execSync } = require('child_process');
-const { success, error } = require('../assets/functions/Respond')
+const { success } = require('../assets/functions/Respond')
 
 router.get('/', (req, res, next) => {
     (function () {
@@ -9,7 +9,7 @@ router.get('/', (req, res, next) => {
             execSync('killall dvblast')
             res.json(success('Stream terminated'))
         } catch (err){
-            res.json(error(err.message))
+            next(err)
         }
     })();
 });

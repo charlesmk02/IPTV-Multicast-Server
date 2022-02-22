@@ -22,6 +22,7 @@ const Stream = (props) => {
                         obj[`${key}`] = channels[key]
                     }
                 }
+
                 if (Object.entries(obj).length === 0) {
                     throw new Error('No channels selected')
                 }
@@ -31,6 +32,7 @@ const Stream = (props) => {
                         throw new Error('Invalid multicast address(es)')
                     }
                 }
+
                 let array = Object.entries(obj)
                 let addresses = []
                 for (let i = 0; i < array.length; i++) {
@@ -43,14 +45,17 @@ const Stream = (props) => {
                     "freq": props.freq,
                     "chl": obj
                 }
+
                 postData('http://192.168.5.105:9000/start-stream', data)
                     .then(() => resolve())
-                    .catch(err => { throw new Error(err.message) })
+                    .catch(err => { throw err })
+                
                 setStreamState(true)
                 props.parentCallback(streamState)
             }
             catch (err) {
                 alert(err.message)
+                console.log(err.message)
                 reject(err)
             }
         })
