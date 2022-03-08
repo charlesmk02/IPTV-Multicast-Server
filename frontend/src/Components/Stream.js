@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form'
 import { Button, Form, Table } from 'react-bootstrap';
 import { postData } from '../Hook/Hook';
@@ -8,6 +8,10 @@ const Stream = (props) => {
     const { isSubmitting } = formState
     const [channels, updateChannels] = useState(props.channels)
     const [streamState, setStreamState] = useState(false)
+
+    useEffect(() => {
+        updateChannels(props.channels)
+    },[props.channels])
 
     const hasDuplicates = (array) => {
         return (new Set(array)).size !== array.length;
@@ -51,7 +55,6 @@ const Stream = (props) => {
                     .catch(err => { throw err })
                 
                 setStreamState(true)
-                props.parentCallback(streamState)
             }
             catch (err) {
                 alert(err.message)
@@ -68,7 +71,6 @@ const Stream = (props) => {
             .then(response => response.json())
             .then(() => {
                 setStreamState(false)
-                props.parentCallback(streamState)
             })
             .catch(err => console.log(err.message))
     }

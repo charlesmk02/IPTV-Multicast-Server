@@ -8,7 +8,6 @@ import Stream from './Components/Stream';
 function App() {
   const [channels, updateChannels] = useState({})
   const [freq, updateFreq] = useState()
-  const [streamState, setStreamState] = useState(false)
 
   return (
     <div className="App">
@@ -20,21 +19,15 @@ function App() {
         </Card>
         <br />
         <div>
-          {streamState === false ?
-            <Scan parentCallback={(childData) => {
-              updateFreq(childData["freq"])
-              updateChannels(childData["chl"])
-            }} />
-            :
-            null
-          }
+          <Scan parentCallback={(childData) => {
+            updateFreq(childData["freq"])
+            updateChannels(childData["chl"])
+          }} />
         </div>
         <br />
         <div>
           {Object.entries(channels).length != 0 ?
-            <Stream parentCallback={(childData) => {
-              setStreamState(childData)
-            }} channels={channels} freq={freq} />
+            <Stream channels={channels} freq={freq} />
             :
             <div>
               <h4 style={{ marginTop: 60, marginBottom: 40, textAlign: 'center' }}>No channels</h4>
