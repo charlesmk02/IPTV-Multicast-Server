@@ -1,17 +1,17 @@
-exports.getUserChannels = function (req, obj) {
-    return new Promise((resolve, reject) => {
-        try {
-            var data = obj
-            var userChannels = {}
-            for (channel in data) {
-                if (data[channel].frequency == req.body.freq) {
-                    userChannels[`${channel}`] = data[channel]
-                }
+const { success, error } = require('./Respond')
+
+exports.getUserChannels = function (req, res, obj) {
+    try {
+        var data = obj
+        var userChannels = {}
+        for (channel in data) {
+            if (data[channel].frequency == req.body.freq) {
+                userChannels[`${channel}`] = data[channel]
             }
-            resolve(userChannels)
-    
-        } catch (err) {
-            reject(err)
-        }  
-    })
+        }
+        res.json(success(userChannels))
+
+    } catch (err) {
+        res.json(error(err.message))
+    }
 }
