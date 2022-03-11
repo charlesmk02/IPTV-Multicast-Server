@@ -1,6 +1,4 @@
-const { success, error } = require('./Respond')
-
-exports.getUserChannels = function (req, res, obj) {
+exports.getUserChannels = function (req, obj) {
     try {
         var data = obj
         var userChannels = {}
@@ -9,9 +7,10 @@ exports.getUserChannels = function (req, res, obj) {
                 userChannels[`${channel}`] = data[channel]
             }
         }
-        res.json(success(userChannels))
+
+        return userChannels
 
     } catch (err) {
-        res.json(error(err.message))
+        throw err
     }
 }

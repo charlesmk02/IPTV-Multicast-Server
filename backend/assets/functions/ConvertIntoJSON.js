@@ -1,7 +1,6 @@
-const { readFileSync, writeFileSync } = require('fs');
-const { error } = require('./Respond')
+const { readFileSync, writeFileSync } = require('fs')
 
-exports.convertIntoJSON = function (res) {
+exports.convertIntoJSON = function () {
     try {
         var line = readFileSync('../../channels.conf').toString().split("\n")
         var array = []
@@ -55,8 +54,7 @@ exports.convertIntoJSON = function (res) {
         writeFileSync('../backend/assets/channels.json', json)
 
         return channels
-
     } catch (err) {
-        res.json(error(err.message))
+        throw err
     }
 }
