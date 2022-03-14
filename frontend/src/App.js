@@ -2,12 +2,10 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState } from 'react';
 import { Card } from 'react-bootstrap';
-import Scan from './Components/Scan';
-import Stream from './Components/Stream';
+import Adapter0 from './Components/Adapter0';
+import Adapter1 from './Components/Adapter1';
 
 function App() {
-  const [channels, updateChannels] = useState({})
-  const [freq, updateFreq] = useState()
 
   return (
     <div className="App">
@@ -19,21 +17,10 @@ function App() {
         </Card>
         <br />
         <div>
-          <Scan parentCallback={(childData) => {
-            updateFreq(childData["freq"])
-            updateChannels(childData["chl"])
-          }} />
+          <Adapter0 />
         </div>
-        <br />
-        <div>
-          {Object.entries(channels).length != 0 ?
-            <Stream channels={channels} freq={freq} />
-            :
-            <div>
-              <h4 style={{ marginTop: 60, marginBottom: 40, textAlign: 'center' }}>No channels</h4>
-            </div>
-          }
-        </div>
+        <hr />
+        <Adapter1 />
       </div>
     </div>
   );

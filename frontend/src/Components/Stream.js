@@ -8,10 +8,11 @@ const Stream = (props) => {
     const { isSubmitting } = formState
     const [channels, updateChannels] = useState(props.channels)
     const [streamState, setStreamState] = useState(false)
+    const [protocol, setProtocol] = useState('RTP')
 
     useEffect(() => {
         updateChannels(props.channels)
-    },[props.channels])
+    }, [props.channels])
 
     const hasDuplicates = (array) => {
         return (new Set(array)).size !== array.length;
@@ -20,6 +21,7 @@ const Stream = (props) => {
     const handleOnStart = () => {
         return new Promise((resolve, reject) => {
             try {
+                console.log(channels)
                 var obj = {}
                 for (let key in channels) {
                     if (channels[key].checked) {
@@ -30,6 +32,7 @@ const Stream = (props) => {
                 if (Object.entries(obj).length === 0) {
                     throw new Error('No channels selected')
                 }
+
                 var re = /^2(?:2[4-9]|3\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d?|0)){3}:([1-9][0-9]{0,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5])$/
                 for (let key in obj) {
                     if (!re.test(obj[key].ip)) {
@@ -46,15 +49,25 @@ const Stream = (props) => {
                     throw new Error('Repeated address(es)')
                 }
                 let data = {
+                    "adpt": props.adapter,
+                    "chl": obj,
                     "freq": props.freq,
-                    "chl": obj
+                    "proto": protocol
                 }
 
-                postData('http://192.168.5.105:9000/start-stream', data)
-                    .then(() => resolve())
-                    .catch(err => { throw err })
-                
                 setStreamState(true)
+
+                postData('http://192.168.5.105:9000/start-stream', data)
+                    .then(() => {
+                        setStreamState(false)
+                        resolve()
+                    })
+                    .catch(err => {
+                        setStreamState(false)
+                        alert(err.message)
+                        console.log(err.message)
+                        reject(err)
+                    })
             }
             catch (err) {
                 alert(err.message)
@@ -68,16 +81,24 @@ const Stream = (props) => {
         event.preventDefault()
 
         fetch('http://192.168.5.105:9000/stop-stream')
-            .then(response => response.json())
             .then(() => {
                 setStreamState(false)
             })
-            .catch(err => console.log(err.message))
+            .catch(err => {
+                alert(err.message)
+                console.log(err.message)
+            })
     }
 
     return (
         <div>
             <form onSubmit={handleSubmit(handleOnStart)}>
+                <Form.Label className="form-label">Protocol :
+                    <Form.Select value={protocol} onChange={(e) => setProtocol(e.target.value)}>
+                        <option value="RTP">RTP</option>
+                        <option value="UDP">UDP</option>
+                    </Form.Select>
+                </Form.Label>
                 <Table id="site" striped size="md">
                     <thead style={{ textAlign: "center" }}>
                         <tr>
