@@ -16,12 +16,18 @@ const Scan = (props) => {
                     throw new Error('Invalid frequency')
                 } else {
                     postData('http://192.168.5.105:9000/scan', { 'freq': freq })
-                        .then(data => props.parentCallback({
-                            "freq": freq,
-                            "chl": data["result"]
-                        }))
-                        .then(() => resolve())
-                        .catch(err => { throw err })
+                        .then(response => {
+                            props.parentCallback({
+                                "freq": freq,
+                                "chl": response["result"]
+                            })
+                            resolve()
+                        })
+                        .catch(err => {
+                            alert(err.message)
+                            console.log(err.message)
+                            reject(err)
+                        })
                 }
             }
             catch (err) {
@@ -34,11 +40,12 @@ const Scan = (props) => {
 
     return (
         <form onSubmit={handleSubmit(handleOnScan)}>
-            <Row className="form-rows" className="api-keys">
+            <Row className="form-rows">
                 <Col sm={6}>
                     <br />
-                    <Form.Label className="form-label">Frequency : </Form.Label>
-                    <Form.Control type="text" placeholder="123456789" onChange={(e) => updateFreq(parseInt(e.target.value))} />
+                    <Form.Label className="form-label">Frequency :
+                        <Form.Control type="text" placeholder="123456789" onChange={(e) => updateFreq(parseInt(e.target.value))} />
+                    </Form.Label>
                     <br />
                     <button disabled={isSubmitting} className="btn btn-primary mr-1">
                         {isSubmitting && <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
