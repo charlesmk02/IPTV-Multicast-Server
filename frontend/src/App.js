@@ -2,10 +2,13 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState } from 'react';
 import { Card } from 'react-bootstrap';
-import Adapter0 from './Components/Adapter0';
-import Adapter1 from './Components/Adapter1';
+import Adapter from './Components/Adapter';
 
 function App() {
+  const [adapter0ScanState, setAdapter0ScanState] = useState()
+  const [adapter1ScanState, setAdapter1ScanState] = useState()
+  const [adapter0StreamState, setAdapter0StreamState] = useState()
+  const [adapter1StreamState, setAdapter1StreamState] = useState()
 
   return (
     <div className="App">
@@ -17,10 +20,18 @@ function App() {
         </Card>
         <br />
         <div>
-          <Adapter0 />
+          <Adapter grandParentCallback1={(childData) => {
+            setAdapter0ScanState(childData)
+          }} grandParentCallback2={(childData) => {
+            setAdapter0StreamState(childData)
+          }} adapter={0} otherAdapterScanState={adapter1ScanState} otherAdapterStreamState={adapter1StreamState} />
         </div>
         <hr />
-        <Adapter1 />
+        <Adapter grandParentCallback1={(childData) => {
+            setAdapter1ScanState(childData)
+          }} grandParentCallback2={(childData) => {
+            setAdapter1StreamState(childData)
+          }} adapter={1} otherAdapterScanState={adapter0ScanState} otherAdapterStreamState={adapter0StreamState} />
       </div>
     </div>
   );

@@ -12,7 +12,8 @@ const Stream = (props) => {
 
     useEffect(() => {
         updateChannels(props.channels)
-    }, [props.channels])
+        props.parentCallback(streamState)
+    }, [props.channels, streamState])
 
     const hasDuplicates = (array) => {
         return (new Set(array)).size !== array.length;
@@ -92,53 +93,60 @@ const Stream = (props) => {
 
     return (
         <div>
-            <form onSubmit={handleSubmit(handleOnStart)}>
-                <Form.Label className="form-label">Protocol :
-                    <Form.Select value={protocol} onChange={(e) => setProtocol(e.target.value)}>
-                        <option value="RTP">RTP</option>
-                        <option value="UDP">UDP</option>
-                    </Form.Select>
-                </Form.Label>
-                <Table id="site" striped size="md">
-                    <thead style={{ textAlign: "center" }}>
-                        <tr>
-                            <th>Channel</th>
-                            <th>Multicast Address</th>
-                            <th>Select</th>
-                        </tr>
-                    </thead>
-                    <tbody className="result" style={{ textAlign: "center" }}>
-                        {Object.keys(channels).map((key, i) => {
-                            return (
-                                <tr className="entreprise" key={channels[key].sid}>
-                                    <td>{key}</td>
-                                    <td><Form.Control type="text" placeholder="IP:PORT" onChange={(e) => {
-                                        let chl = { ...channels };
-                                        chl[key].ip = e.target.value
-                                        updateChannels(chl)
-                                    }}></Form.Control></td>
-                                    <td>
-                                        <Form.Check defaultChecked onChange={(e) => {
-                                            let chl = { ...channels };
-                                            chl[key].checked = e.target.checked
-                                            updateChannels(chl)
-                                        }}>
-                                        </Form.Check>
-                                    </td>
+            {Object.entries(channels) != 0 ?
+                <div>
+                    <form onSubmit={handleSubmit(handleOnStart)}>
+                        <Form.Label className="form-label">Protocol :
+                            <Form.Select disabled={streamState} value={protocol} onChange={(e) => setProtocol(e.target.value)}>
+                                <option value="RTP">RTP</option>
+                                <option value="UDP">UDP</option>
+                            </Form.Select>
+                        </Form.Label>
+                        <Table id="site" striped size="md">
+                            <thead style={{ textAlign: "center" }}>
+                                <tr>
+                                    <th>Channel</th>
+                                    <th>Multicast Address</th>
+                                    <th>Select</th>
                                 </tr>
-                            )
-                        })}
-                    </tbody>
-                </Table>
-                <button disabled={isSubmitting} className="btn btn-success">
-                    {isSubmitting && <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>}
-                    Stream
-                </button>
-            </form>
-            <br />
-            <div>
-                {streamState ? <Button className="stop-button" onClick={handleOnStop}>Stop</Button> : null}
-            </div>
+                            </thead>
+                            <tbody className="result" style={{ textAlign: "center" }}>
+                                {Object.keys(channels).map((key, i) => {
+                                    return (
+                                        <tr className="entreprise" key={channels[key].sid}>
+                                            <td>{key}</td>
+                                            <td><Form.Control disabled={streamState} type="text" placeholder="IP:PORT" onChange={(e) => {
+                                                let chl = { ...channels };
+                                                chl[key].ip = e.target.value
+                                                updateChannels(chl)
+                                            }}></Form.Control></td>
+                                            <td>
+                                                <Form.Check disabled={streamState} defaultChecked onChange={(e) => {
+                                                    let chl = { ...channels };
+                                                    chl[key].checked = e.target.checked
+                                                    updateChannels(chl)
+                                                }}>
+                                                </Form.Check>
+                                            </td>
+                                        </tr>
+                                    )
+                                })}
+                            </tbody>
+                        </Table>
+                        <button disabled={isSubmitting || props.otherAdapterScanState} className="btn btn-success">
+                            {isSubmitting && <span className="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>}
+                            Stream
+                        </button>
+                    </form>
+                    <br />
+                    <div>
+                        {streamState ? <Button className="stop-button" onClick={handleOnStop}>Stop</Button> : null}
+                    </div>
+                </div>
+                :
+                <div>
+                    <h4 style={{ marginTop: 60, marginBottom: 40, textAlign: 'center' }}>No channels</h4>
+                </div>}
         </div>
     )
 }
