@@ -5,11 +5,11 @@ exports.launchStream = async function (req) {
     try {
         if (req.body.proto === 'UDP') {
             console.log("In UDP")
-            const { stdout, stderr } = await exec(`dvblast -a ${req.body.adpt} -f ${req.body.freq} -c /home/pi/config-channels -m QAM_64 -b 8 -e -U`)
+            const { stdout, stderr } = await exec(`dvblast -a ${req.body.adpt} -f ${req.body.freq} -c /home/pi/config-channels${req.body.adpt} -m QAM_64 -b 8 -e -U`)
             return stderr
         } else {
             console.log("In RTP")
-            const { stdout, stderr } = await exec(`dvblast -a ${req.body.adpt} -f ${req.body.freq} -c /home/pi/config-channels -m QAM_64 -b 8 -e`)
+            const { stdout, stderr } = await exec(`dvblast -a ${req.body.adpt} -f ${req.body.freq} -c /home/pi/config-channels${req.body.adpt} -m QAM_64 -b 8 -e`)
             return stderr
         }
         
