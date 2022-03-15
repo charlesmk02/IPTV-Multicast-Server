@@ -7,7 +7,7 @@ const { success } = require('../assets/functions/Respond')
 
 router.post('/', (req, res, next) => {
     try {
-        scanAll()
+        scanAll(req)
         let obj = convertIntoJSON()
         let data = getUserChannels(req, obj)
         res.json(success(data))

@@ -10,7 +10,7 @@ exports.setMulticastAddress = function (req) {
                 string = string.concat(`\n${userChannels[key].ip} 1 ${userChannels[key].sid} #${key}`)
             }
             
-            writeFileSync('/home/pi/config-channels', string)
+            writeFileSync(`/home/pi/config-channels${req.body.adpt}`, string)
 
         } catch (err) {
             throw err
