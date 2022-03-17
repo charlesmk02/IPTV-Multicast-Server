@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form'
 import { Form, Row, Col } from 'react-bootstrap';
-import { postData } from '../Hook/Hook';
+import postData from '../Hook/postData';
 
 const Scan = (props) => {
     const { handleSubmit, formState } = useForm()
@@ -35,6 +35,7 @@ const Scan = (props) => {
                             resolve()
                         })
                         .catch(err => {
+                            updateScanState(false)
                             alert(err.message)
                             console.log(err.message)
                             reject(err)

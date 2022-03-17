@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form'
 import { Button, Form, Table } from 'react-bootstrap';
-import { postData } from '../Hook/Hook';
+import postData from '../Hook/postData';
 
 const Stream = (props) => {
     const { handleSubmit, formState } = useForm()
