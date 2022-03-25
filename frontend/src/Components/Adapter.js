@@ -17,7 +17,7 @@ const Adapter = (props) => {
 
     return (
         <div>
-            {<h4 style={{ marginTop: 30 }}>Adapter{props.adapter}</h4>}
+            {<h4 style={{ marginTop: 30 }}>Tuner {props.adapter + 1}</h4>}
             <div>
                 <Scan parentCallback1={(childData) => {
                     updateFreq(childData["freq"])

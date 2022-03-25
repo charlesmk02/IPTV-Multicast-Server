@@ -2,7 +2,7 @@ const { readFileSync, writeFileSync } = require('fs')
 
 exports.convertIntoJSON = function () {
     try {
-        var line = readFileSync('../../channels.conf').toString().split("\n")
+        var line = readFileSync('/home/pi/channels.conf').toString().split("\n")
         var array = []
 
         for (i in line) {
@@ -51,7 +51,7 @@ exports.convertIntoJSON = function () {
         }
 
         var json = JSON.stringify(channels, null, 2);
-        writeFileSync('../backend/assets/channels.json', json)
+        writeFileSync('/home/pi/channels.json', json)
 
         return channels
     } catch (err) {
