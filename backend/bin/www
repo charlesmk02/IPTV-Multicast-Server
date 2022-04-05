@@ -7,6 +7,9 @@
 var app = require('../app');
 var debug = require('debug')('backend:server');
 var http = require('http');
+const { readFileSync } = require('fs')
+var util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
 /**
  * Get port from environment and store in Express.
@@ -88,3 +91,26 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+
+/**
+ * Start stream if it was abruptely interrupted.
+ */
+
+if (readFileSync(`/home/pi/stream0.json`).length != 0) {
+  let stream0 = JSON.parse(readFileSync(`/home/pi/stream0.json`))
+  if (stream0.proto === 'UDP') {
+    exec(`dvblast -a 0 -f ${stream0.freq} -c /home/pi/config-channels0 -m QAM_64 -b 8 -e -U`)
+  } else {
+    exec(`dvblast -a 0 -f ${stream0.freq} -c /home/pi/config-channels0 -m QAM_64 -b 8 -e`)
+  }
+}
+
+if (readFileSync(`/home/pi/stream1.json`).length != 0) {
+  let stream1 = JSON.parse(readFileSync(`/home/pi/stream1.json`))
+  if (stream1.proto === 'UDP') {
+    exec(`dvblast -a 1 -f ${stream1.freq} -c /home/pi/config-channels1 -m QAM_64 -b 8 -e -U`)
+  } else {
+    exec(`dvblast -a 1 -f ${stream1.freq} -c /home/pi/config-channels1 -m QAM_64 -b 8 -e`)
+  }
+}
+

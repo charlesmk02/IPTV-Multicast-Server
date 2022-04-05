@@ -1,3 +1,5 @@
+# This service starts the NodeJS server on boot.
+
 [Unit]
 Description=IPTV
 After=network.target

@@ -1,3 +1,9 @@
+/**
+ * On this route the server scans all the channels with the tuner selected
+ * and returns the channels that are in the frequency entered by the client.
+ * The adapter and the frequency are specified in the req.body.
+ */
+
 var express = require('express')
 var router = express.Router();
 const { scanAll } = require('../assets/functions/ScanAll')

@@ -8,6 +8,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var startStreamRouter = require('./routes/StartStream');
 var stopStreamRouter = require('./routes/StopStream');
+var streamStateRouter = require('./routes/StreamState');
 var scanRouter = require('./routes/Scan');
 var app = express();
 
@@ -28,6 +29,7 @@ app.use('/users', usersRouter);
 app.use('/start-stream',startStreamRouter);
 app.use('/stop-stream',stopStreamRouter);
 app.use('/scan',scanRouter);
+app.use('/stream-state',streamStateRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
