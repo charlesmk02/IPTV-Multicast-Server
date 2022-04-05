@@ -9,11 +9,15 @@ const Stream = (props) => {
     const [channels, updateChannels] = useState(props.channels)
     const [streamState, setStreamState] = useState(false)
     const [protocol, setProtocol] = useState('RTP')
+    const [otherAdapterChannels, setOtherAdapterChannels] = useState({})
+    const [selectedChannels, setSelectedChannels] = useState({})
 
     useEffect(() => {
         updateChannels(props.channels)
-        props.parentCallback(streamState)
-    }, [props.channels, streamState])
+        setOtherAdapterChannels(props.otherAdapterChannels)
+        props.parentCallback1(streamState)
+        props.parentCallback2(selectedChannels)
+    }, [props.channels, props.otherAdapterChannels, streamState, selectedChannels])
 
     const hasDuplicates = (array) => {
         return (new Set(array)).size !== array.length;
@@ -41,11 +45,16 @@ const Stream = (props) => {
                     }
                 }
 
-                let array = Object.entries(obj)
+                let array1 = Object.entries(obj)
                 let addresses = []
-                for (let i = 0; i < array.length; i++) {
-                    addresses.push(array[i][1].ip)
+                for (let i = 0; i < array1.length; i++) {
+                    addresses.push(array1[i][1].ip)
                 }
+                let array2 = Object.entries(otherAdapterChannels)
+                for (let i = 0; i < array2.length; i++) {
+                    addresses.push(array2[i][1].ip)
+                }
+                console.log(addresses)
                 if (hasDuplicates(addresses)) {
                     throw new Error('Repeated address(es)')
                 }
@@ -57,6 +66,7 @@ const Stream = (props) => {
                 }
 
                 setStreamState(true)
+                setSelectedChannels(obj)
 
                 postData('http://192.168.5.105:9000/start-stream', data)
                     .then(() => {
@@ -133,7 +143,7 @@ const Stream = (props) => {
                                 })}
                             </tbody>
                         </Table>
-                        <button disabled={isSubmitting || props.otherAdapterScanState} className="btn btn-success">
+                        <button disabled={isSubmitting} className="btn btn-success">
                             {isSubmitting && <span className="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>}
                             Stream
                         </button>
