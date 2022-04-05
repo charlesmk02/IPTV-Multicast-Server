@@ -59,7 +59,7 @@ const Scan = (props) => {
                         <Form.Control disabled={isSubmitting || props.streamState} type="text" placeholder="123456789" onChange={(e) => updateFreq(parseInt(e.target.value))} />
                     </Form.Label>
                     <br />
-                    <button disabled={isSubmitting || props.otherAdapterScanState || props.streamState || props.otherAdapterStreamState} className="btn btn-primary mr-1">
+                    <button disabled={isSubmitting || props.streamState} className="btn btn-primary mr-1">
                         {isSubmitting && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
                         Scan
                     </button>
