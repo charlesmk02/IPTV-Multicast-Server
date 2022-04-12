@@ -6,18 +6,29 @@ import postData from '../Hook/postData';
 const Stream = (props) => {
     const { handleSubmit, formState } = useForm()
     const { isSubmitting } = formState
-    const [channels, updateChannels] = useState(props.channels)
+    const [channelsScanned, setChannelsScanned] = useState(props.channelsScanned)
     const [streamState, setStreamState] = useState(false)
     const [protocol, setProtocol] = useState('RTP')
+    const [channelsStreamed, setChannelsStreamed] = useState({})
     const [otherAdapterChannels, setOtherAdapterChannels] = useState({})
-    const [selectedChannels, setSelectedChannels] = useState({})
 
+    /**
+     * This useEffect handles change of the channels scanned by the tuner and 
+     * of the multicast addresses of the other Adapter component.
+     * Whenever the state of the stream or the channels streamed change,
+     * we pass the data to the Adapter component.
+     */
+    
     useEffect(() => {
-        updateChannels(props.channels)
+        setChannelsScanned(props.channelsScanned)
         setOtherAdapterChannels(props.otherAdapterChannels)
         props.parentCallback1(streamState)
-        props.parentCallback2(selectedChannels)
-    }, [props.channels, props.otherAdapterChannels, streamState, selectedChannels])
+        props.parentCallback2(channelsStreamed)
+    }, [props.channelsScanned, props.otherAdapterChannels, streamState, channelsStreamed])
+
+    /**
+     * We use this function to prevent duplicates of multicast addresses
+     */
 
     const hasDuplicates = (array) => {
         return (new Set(array)).size !== array.length;
@@ -25,12 +36,21 @@ const Stream = (props) => {
 
     const handleOnStart = () => {
         return new Promise((resolve, reject) => {
+
+            /**
+             * Errors handling
+             */
+            
             try {
-                console.log(channels)
+
+                /**
+                 * No channels selected
+                 */
+                
                 var obj = {}
-                for (let key in channels) {
-                    if (channels[key].checked) {
-                        obj[`${key}`] = channels[key]
+                for (let key in channelsScanned) {
+                    if (channelsScanned[key].checked) {
+                        obj[`${key}`] = channelsScanned[key]
                     }
                 }
 
@@ -38,12 +58,20 @@ const Stream = (props) => {
                     throw new Error('No channels selected')
                 }
 
+                /**
+                 * Invalid multicast addresses
+                 */
+
                 var re = /^2(?:2[4-9]|3\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d?|0)){3}:([1-9][0-9]{0,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5])$/
                 for (let key in obj) {
                     if (!re.test(obj[key].ip)) {
                         throw new Error('Invalid multicast address(es)')
                     }
                 }
+
+                /**
+                 * Duplicates of mutlicast addresses
+                 */
 
                 let array1 = Object.entries(obj)
                 let addresses = []
@@ -58,17 +86,27 @@ const Stream = (props) => {
                 if (hasDuplicates(addresses)) {
                     throw new Error('Repeated address(es)')
                 }
+
                 let data = {
                     "adpt": props.adapter,
                     "chl": obj,
-                    "freq": props.freq,
+                    "freq": props.frequency,
                     "proto": protocol
                 }
 
                 setStreamState(true)
-                setSelectedChannels(obj)
+                setChannelsStreamed(obj)
+
+                /**
+                 * POST request to the server
+                 */
 
                 postData('http://192.168.5.105:9000/start-stream', data)
+
+                    /**
+                     * The promise is resolved when the stream is terminated
+                     */
+
                     .then(() => {
                         setStreamState(false)
                         resolve()
@@ -87,7 +125,7 @@ const Stream = (props) => {
             }
         })
     }
-
+    
     const handleOnStop = (event) => {
         event.preventDefault()
 
@@ -103,7 +141,7 @@ const Stream = (props) => {
 
     return (
         <div>
-            {Object.entries(channels) != 0 ?
+            {Object.entries(channelsScanned) != 0 ?
                 <div>
                     <form onSubmit={handleSubmit(handleOnStart)}>
                         <Form.Label className="form-label">Protocol :
@@ -121,20 +159,20 @@ const Stream = (props) => {
                                 </tr>
                             </thead>
                             <tbody className="result" style={{ textAlign: "center" }}>
-                                {Object.keys(channels).map((key, i) => {
+                                {Object.keys(channelsScanned).map((key, i) => {
                                     return (
-                                        <tr className="entreprise" key={channels[key].sid}>
+                                        <tr className="entreprise" key={channelsScanned[key].sid}>
                                             <td>{key}</td>
                                             <td><Form.Control disabled={streamState} type="text" placeholder="IP:PORT" onChange={(e) => {
-                                                let chl = { ...channels };
+                                                let chl = { ...channelsScanned };
                                                 chl[key].ip = e.target.value
-                                                updateChannels(chl)
+                                                setChannelsScanned(chl)
                                             }}></Form.Control></td>
                                             <td>
                                                 <Form.Check disabled={streamState} defaultChecked onChange={(e) => {
-                                                    let chl = { ...channels };
+                                                    let chl = { ...channelsScanned };
                                                     chl[key].checked = e.target.checked
-                                                    updateChannels(chl)
+                                                    setChannelsScanned(chl)
                                                 }}>
                                                 </Form.Check>
                                             </td>

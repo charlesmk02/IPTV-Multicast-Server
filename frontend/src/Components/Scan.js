@@ -6,8 +6,13 @@ import postData from '../Hook/postData';
 const Scan = (props) => {
     const { handleSubmit, formState } = useForm()
     const { isSubmitting } = formState
-    const [freq, updateFreq] = useState();
+    const [frequency, setFrequency] = useState();
     const [scanState, updateScanState] = useState(false)
+
+    /**
+     * Whenever the state of the scan changes
+     * we pass the data to the Adapter component. 
+     */
 
     useEffect(() => {
         props.parentCallback2(scanState)
@@ -15,21 +20,36 @@ const Scan = (props) => {
 
     const handleOnScan = () => {
         return new Promise((resolve, reject) => {
+
+            /**
+             * Error handling
+             */
+            
             try {
-                var re = new RegExp('^\\d{9}$')
-                if (!re.test(freq)) {
+                var re = new RegExp('^\\d{9}$') // The frequency must be a 9-digit number
+                if (!re.test(frequency)) {
                     throw new Error('Invalid frequency')
                 } else {
                     updateScanState(true)
 
+                    /**
+                     * POST request to the server
+                     */
+
                     postData('http://192.168.5.105:9000/scan', {
-                        "freq": freq,
+                        "freq": frequency,
                         "adpt": props.adapter
                     })
+
+                        /**
+                         * When the scan is complete,
+                         * we pass the data to the Adapter component.
+                         */
+
                         .then(response => {
                             props.parentCallback1({
-                                "chl": response["result"],
-                                "freq": freq,
+                                "chl": response["result"], 
+                                "freq": frequency,
                             })
                             updateScanState(false)
                             resolve()
@@ -56,7 +76,7 @@ const Scan = (props) => {
                 <Col sm={6}>
                     <br />
                     <Form.Label className="form-label">Frequency :
-                        <Form.Control disabled={isSubmitting || props.streamState} type="text" placeholder="123456789" onChange={(e) => updateFreq(parseInt(e.target.value))} />
+                        <Form.Control disabled={isSubmitting || props.streamState} type="text" placeholder="123456789" onChange={(e) => setFrequency(parseInt(e.target.value))} />
                     </Form.Label>
                     <br />
                     <button disabled={isSubmitting || props.streamState} className="btn btn-primary mr-1">

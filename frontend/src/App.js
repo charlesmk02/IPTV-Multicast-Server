@@ -5,8 +5,8 @@ import { Card } from 'react-bootstrap';
 import Adapter from './Components/Adapter';
 
 function App() {
-  const [adapter0Channels, setAdapter0Channels] = useState()
-  const [adapter1Channels, setAdapter1Channels] = useState()
+  const [adapter0Channels, setAdapter0Channels] = useState() // Channels streamed by tuner 1
+  const [adapter1Channels, setAdapter1Channels] = useState() // Channels streamed by tuner 2
 
   return (
     <div className="App">
