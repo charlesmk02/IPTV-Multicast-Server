@@ -1,3 +1,8 @@
+/**
+ * This function writes the channels streamed in a JSON File.
+ * The name of the file depends on the adapter selected.
+ */
+
 const { writeFileSync } = require('fs')
 
 exports.writeStream = function (req) {

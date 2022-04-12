@@ -93,7 +93,7 @@ function onListening() {
 }
 
 /**
- * Start stream if it was abruptely interrupted.
+ * Start the stream if it was abruptly interrupted.
  */
 
 if (readFileSync(`/home/pi/stream0.json`).length != 0) {

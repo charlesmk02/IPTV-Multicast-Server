@@ -1,6 +1,6 @@
 /**
  * On this route the server scans all the channels with the tuner selected
- * and returns the channels that are in the frequency entered by the client.
+ * and returns the channels that are in the frequency set by the client.
  * The adapter and the frequency are specified in the req.body.
  */
 

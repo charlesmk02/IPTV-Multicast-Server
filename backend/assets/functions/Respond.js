@@ -1,5 +1,5 @@
 /**
- * Handling response
+ * Response handling
  */
 
 exports.success = function (result) {

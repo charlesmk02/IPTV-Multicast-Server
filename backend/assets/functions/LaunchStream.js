@@ -1,3 +1,9 @@
+/**
+ * This function executes the dvblast command to start the stream.
+ * The parameters specified by the client are :
+ * the adapter ("-a"), the frequency ("-f") and the protocol ("-U" for UDP)
+ */
+
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 

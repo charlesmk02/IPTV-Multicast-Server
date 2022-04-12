@@ -1,6 +1,7 @@
 /**
  * On this route, the server writes the multicast addresses entered by the client
- * and starts the stream.
+ * in a config file.
+ * It also writes the channels streamed in a JSON file then it starts the stream.
  * The adapter, frequency, channels, multicast addresses and protocol
  * are specified in req.body.
  */

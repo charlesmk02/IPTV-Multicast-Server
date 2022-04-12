@@ -1,7 +1,7 @@
 /**
  * This function scans all the DVB-T multiplexes available in Paris, France
  * and writes the generated channel list in a config file.
- * The adapter (tuner) is specififed with the -a parameter.
+ * The adapter (tuner) is specififed in the command with the "-a" parameter.
  */
 
 const { execSync } = require("child_process");

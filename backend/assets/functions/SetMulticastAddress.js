@@ -13,7 +13,7 @@ exports.setMulticastAddress = function (req) {
             var string = ''
             /**
              * Each line of the file corresponds to a channel :
-             * IP:PORT 1 SID #NAME
+             * "IP:PORT 1 SID #NAME"
              */
             for (key in userChannels) {
                 string = string.concat(`\n${userChannels[key].ip} 1 ${userChannels[key].sid} #${key}`)
