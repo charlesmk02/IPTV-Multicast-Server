@@ -1,10 +1,15 @@
+/**
+ * This function sorts the obj parameter that includes all the channels
+ * and returns an object containing only
+ * the channels that are in the frequency set by the user.
+ */
+
 exports.getUserChannels = function (req, obj) {
     try {
-        var data = obj
         var userChannels = {}
-        for (channel in data) {
-            if (data[channel].frequency == req.body.freq) {
-                userChannels[`${channel}`] = data[channel]
+        for (channel in obj) {
+            if (obj[channel].frequency == req.body.freq) {
+                userChannels[`${channel}`] = obj[channel]
             }
         }
 
