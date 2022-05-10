@@ -10,13 +10,13 @@ var express = require('express')
 var router = express.Router();
 const { setMulticastAddress } = require('../assets/functions/SetMulticastAddress')
 const { launchStream } = require('../assets/functions/LaunchStream');
-const { writeStream } = require('../assets/functions/WriteStream');
+const { saveStream } = require('../assets/functions/SaveStream');
 const { success } = require('../assets/functions/Respond');
 
 router.post('/', async (req, res, next) => {
     try {
         setMulticastAddress(req)
-        writeStream(req)
+        saveStream(req)
         let stderr = await launchStream(req)
         res.json(success(stderr))
     } catch (err) {
